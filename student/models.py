@@ -1,10 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from rest_framework import serializers, viewsets, status
-from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.views import APIView
-from django.utils import timezone
+
 
 # Create your models here.
 
@@ -13,7 +9,7 @@ class Group(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    members = models.ManyToManyField(User, related_name='groups')
+    members = models.ManyToManyField(User, related_name='custom_groups')
 
     def __str__(self):
         return self.name

@@ -2,6 +2,73 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.contrib.auth import authenticate
+from student.models import Group, Expense
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    members = serializers.SlugRelatedField(
+        many=True,
+        slug_field='username',
+        queryset=User.objects.all()
+    )
+
+    class Meta:
+        model = Group
+        fields = ['id', 'name', 'description', 'members', 'created_at']
+
+
+class ExpenseSerializer(serializers.ModelSerializer):
+    group = serializers.SlugRelatedField(
+        slug_field='name',  # This makes it accept and return the group name
+        queryset=Group.objects.all()
+    )
+    paid_by = serializers.SlugRelatedField(
+        slug_field='username',  # You can use 'email' instead of 'username'
+        queryset=User.objects.all()
+    )
+    split_among = serializers.SlugRelatedField(
+        many=True,
+        slug_field='username',  # You can use 'email' instead of 'username'
+        queryset=User.objects.all()
+    )
+
+    class Meta:
+        model = Expense
+        fields = ['id', 'group', 'description', 'amount',
+                  'paid_by', 'split_among', 'created_at']
+
+    def validate(self, data):
+        if data['amount'] <= 0:
+            raise serializers.ValidationError(
+                {'amount': 'Amount must be greater than zero.'})
+        return data
+# --------------------------------------------------------------------------
+
+
+class ExpenseWithShareSerializer(serializers.ModelSerializer):
+    group = serializers.SlugRelatedField(
+        slug_field='name', queryset=Group.objects.all())
+    paid_by = serializers.SlugRelatedField(
+        slug_field='username', queryset=User.objects.all())
+    split_among = serializers.SlugRelatedField(
+        slug_field='username', queryset=User.objects.all(), many=True)
+    user_share = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Expense
+        fields = ['id', 'group', 'description', 'amount',
+                  'paid_by', 'split_among', 'user_share']
+
+    def get_user_share(self, obj):
+        # Get the user making the request
+        user = self.context['request'].user
+
+        # Calculate the share of the user if they are in the split_among list
+        if user in obj.split_among.all():
+            total_members = len(obj.split_among.all())
+            return round(obj.amount / total_members, 2)
+        return 0  # If the user is not part of the split, their share is 0
+# ------------------------------------------------------------------------------
 
 
 class RegistrationSerializer(serializers.ModelSerializer):

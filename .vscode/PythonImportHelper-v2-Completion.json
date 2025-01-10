@@ -89,6 +89,95 @@
         "documentation": {}
     },
     {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "Group",
+        "importPath": "student.models",
+        "description": "student.models",
+        "isExtraImport": true,
+        "detail": "student.models",
+        "documentation": {}
+    },
+    {
+        "label": "Expense",
+        "importPath": "student.models",
+        "description": "student.models",
+        "isExtraImport": true,
+        "detail": "student.models",
+        "documentation": {}
+    },
+    {
+        "label": "Group",
+        "importPath": "student.models",
+        "description": "student.models",
+        "isExtraImport": true,
+        "detail": "student.models",
+        "documentation": {}
+    },
+    {
+        "label": "Expense",
+        "importPath": "student.models",
+        "description": "student.models",
+        "isExtraImport": true,
+        "detail": "student.models",
+        "documentation": {}
+    },
+    {
+        "label": "Group",
+        "importPath": "student.models",
+        "description": "student.models",
+        "isExtraImport": true,
+        "detail": "student.models",
+        "documentation": {}
+    },
+    {
+        "label": "Expense",
+        "importPath": "student.models",
+        "description": "student.models",
+        "isExtraImport": true,
+        "detail": "student.models",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -110,38 +199,6 @@
         "description": "django.contrib.auth.models",
         "isExtraImport": true,
         "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "serializers",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "viewsets",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "status",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
         "documentation": {}
     },
     {
@@ -177,70 +234,6 @@
         "documentation": {}
     },
     {
-        "label": "Response",
-        "importPath": "rest_framework.response",
-        "description": "rest_framework.response",
-        "isExtraImport": true,
-        "detail": "rest_framework.response",
-        "documentation": {}
-    },
-    {
-        "label": "Response",
-        "importPath": "rest_framework.response",
-        "description": "rest_framework.response",
-        "isExtraImport": true,
-        "detail": "rest_framework.response",
-        "documentation": {}
-    },
-    {
-        "label": "RefreshToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
-        "documentation": {}
-    },
-    {
-        "label": "RefreshToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
-        "documentation": {}
-    },
-    {
-        "label": "APIView",
-        "importPath": "rest_framework.views",
-        "description": "rest_framework.views",
-        "isExtraImport": true,
-        "detail": "rest_framework.views",
-        "documentation": {}
-    },
-    {
-        "label": "APIView",
-        "importPath": "rest_framework.views",
-        "description": "rest_framework.views",
-        "isExtraImport": true,
-        "detail": "rest_framework.views",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
         "label": "authenticate",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -273,11 +266,115 @@
         "documentation": {}
     },
     {
+        "label": "GroupViewSet",
+        "importPath": "student.views",
+        "description": "student.views",
+        "isExtraImport": true,
+        "detail": "student.views",
+        "documentation": {}
+    },
+    {
+        "label": "ExpenseViewSet",
+        "importPath": "student.views",
+        "description": "student.views",
+        "isExtraImport": true,
+        "detail": "student.views",
+        "documentation": {}
+    },
+    {
+        "label": "UserExpensesView",
+        "importPath": "student.views",
+        "description": "student.views",
+        "isExtraImport": true,
+        "detail": "student.views",
+        "documentation": {}
+    },
+    {
         "label": "TokenRefreshView",
         "importPath": "rest_framework_simplejwt.views",
         "description": "rest_framework_simplejwt.views",
         "isExtraImport": true,
         "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "RegistrationSerializer",
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "isExtraImport": true,
+        "detail": "student.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "LoginSerializer",
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "isExtraImport": true,
+        "detail": "student.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "GroupSerializer",
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "isExtraImport": true,
+        "detail": "student.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ExpenseSerializer",
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "isExtraImport": true,
+        "detail": "student.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ExpenseWithShareSerializer",
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "isExtraImport": true,
+        "detail": "student.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "IsAuthenticated",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
         "documentation": {}
     },
     {
@@ -375,7 +472,7 @@
         "kind": 5,
         "importPath": "pocketSense.settings",
         "description": "pocketSense.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'pocketSense.wsgi.application'\nSIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),\n    'ROTATE_REFRESH_TOKENS': True,\n    'BLACKLIST_AFTER_ROTATION': True,\n    'ALGORITHM': 'HS256',\n    'SIGNING_KEY': SECRET_KEY,\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    'USER_ID_FIELD': 'id',",
+        "peekOfCode": "WSGI_APPLICATION = 'pocketSense.wsgi.application'\nSIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),\n    'ROTATE_REFRESH_TOKENS': True,\n    'BLACKLIST_AFTER_ROTATION': True,\n    'ALGORITHM': 'HS256',\n    'SIGNING_KEY': SECRET_KEY,\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    'USER_ID_FIELD': 'id',",
         "detail": "pocketSense.settings",
         "documentation": {}
     },
@@ -384,7 +481,7 @@
         "kind": 5,
         "importPath": "pocketSense.settings",
         "description": "pocketSense.settings",
-        "peekOfCode": "SIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),\n    'ROTATE_REFRESH_TOKENS': True,\n    'BLACKLIST_AFTER_ROTATION': True,\n    'ALGORITHM': 'HS256',\n    'SIGNING_KEY': SECRET_KEY,\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    'USER_ID_FIELD': 'id',\n    'USER_ID_CLAIM': 'user_id',",
+        "peekOfCode": "SIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),\n    'ROTATE_REFRESH_TOKENS': True,\n    'BLACKLIST_AFTER_ROTATION': True,\n    'ALGORITHM': 'HS256',\n    'SIGNING_KEY': SECRET_KEY,\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    'USER_ID_FIELD': 'id',\n    'USER_ID_CLAIM': 'user_id',",
         "detail": "pocketSense.settings",
         "documentation": {}
     },
@@ -474,7 +571,7 @@
         "kind": 5,
         "importPath": "pocketSense.urls",
         "description": "pocketSense.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('auth/', include('student.urls'))\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('student.urls'))\n]",
         "detail": "pocketSense.urls",
         "documentation": {}
     },
@@ -485,6 +582,15 @@
         "description": "pocketSense.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "pocketSense.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "student.migrations.0001_initial",
+        "description": "student.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Group',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "student.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -501,7 +607,7 @@
         "kind": 6,
         "importPath": "student.models",
         "description": "student.models",
-        "peekOfCode": "class Group(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(blank=True, null=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    members = models.ManyToManyField(User, related_name='groups')\n    def __str__(self):\n        return self.name\nclass Expense(models.Model):\n    group = models.ForeignKey(\n        Group, on_delete=models.CASCADE, related_name='expenses')",
+        "peekOfCode": "class Group(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(blank=True, null=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    members = models.ManyToManyField(User, related_name='custom_groups')\n    def __str__(self):\n        return self.name\nclass Expense(models.Model):\n    group = models.ForeignKey(\n        Group, on_delete=models.CASCADE, related_name='expenses')",
         "detail": "student.models",
         "documentation": {}
     },
@@ -512,6 +618,33 @@
         "description": "student.models",
         "peekOfCode": "class Expense(models.Model):\n    group = models.ForeignKey(\n        Group, on_delete=models.CASCADE, related_name='expenses')\n    description = models.CharField(max_length=255)\n    amount = models.DecimalField(max_digits=10, decimal_places=2)\n    paid_by = models.ForeignKey(\n        User, on_delete=models.CASCADE, related_name='expenses_paid')\n    created_at = models.DateTimeField(auto_now_add=True)\n    split_among = models.ManyToManyField(User, related_name='expenses_shared')\n    def __str__(self):",
         "detail": "student.models",
+        "documentation": {}
+    },
+    {
+        "label": "GroupSerializer",
+        "kind": 6,
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "peekOfCode": "class GroupSerializer(serializers.ModelSerializer):\n    members = serializers.SlugRelatedField(\n        many=True,\n        slug_field='username',\n        queryset=User.objects.all()\n    )\n    class Meta:\n        model = Group\n        fields = ['id', 'name', 'description', 'members', 'created_at']\nclass ExpenseSerializer(serializers.ModelSerializer):",
+        "detail": "student.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ExpenseSerializer",
+        "kind": 6,
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "peekOfCode": "class ExpenseSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name',  # This makes it accept and return the group name\n        queryset=Group.objects.all()\n    )\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username',  # You can use 'email' instead of 'username'\n        queryset=User.objects.all()\n    )\n    split_among = serializers.SlugRelatedField(",
+        "detail": "student.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ExpenseWithShareSerializer",
+        "kind": 6,
+        "importPath": "student.serializers",
+        "description": "student.serializers",
+        "peekOfCode": "class ExpenseWithShareSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name', queryset=Group.objects.all())\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username', queryset=User.objects.all())\n    split_among = serializers.SlugRelatedField(\n        slug_field='username', queryset=User.objects.all(), many=True)\n    user_share = serializers.SerializerMethodField()\n    class Meta:\n        model = Expense",
+        "detail": "student.serializers",
         "documentation": {}
     },
     {
@@ -537,7 +670,7 @@
         "kind": 5,
         "importPath": "student.urls",
         "description": "student.urls",
-        "peekOfCode": "router = routers.DefaultRouter()\nrouter.register('register', RegistrationViewSet, basename='register')\nurlpatterns = [\n    path('', include(router.urls)),\n    path('login/', LoginView.as_view(), name='login'),\n    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n]",
+        "peekOfCode": "router = routers.DefaultRouter()\nrouter.register('register', RegistrationViewSet, basename='register')\nrouter.register('groups', GroupViewSet, basename='group')\nrouter.register('expenses', ExpenseViewSet, basename='expense')\n# router.register('user-expenses/', UserExpensesView, basename='user-expenses')\nurlpatterns = [\n    path('', include(router.urls)),\n    path('login/', LoginView.as_view(), name='login'),\n    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n    path('user-expenses/', UserExpensesView.as_view(), name='user_expenses'),",
         "detail": "student.urls",
         "documentation": {}
     },
@@ -546,8 +679,35 @@
         "kind": 5,
         "importPath": "student.urls",
         "description": "student.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', include(router.urls)),\n    path('login/', LoginView.as_view(), name='login'),\n    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', include(router.urls)),\n    path('login/', LoginView.as_view(), name='login'),\n    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n    path('user-expenses/', UserExpensesView.as_view(), name='user_expenses'),\n]",
         "detail": "student.urls",
+        "documentation": {}
+    },
+    {
+        "label": "GroupViewSet",
+        "kind": 6,
+        "importPath": "student.views",
+        "description": "student.views",
+        "peekOfCode": "class GroupViewSet(viewsets.ModelViewSet):\n    queryset = Group.objects.all()\n    serializer_class = GroupSerializer\nclass ExpenseViewSet(viewsets.ModelViewSet):\n    queryset = Expense.objects.all()\n    serializer_class = ExpenseSerializer\n    def create(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        expense = serializer.save()",
+        "detail": "student.views",
+        "documentation": {}
+    },
+    {
+        "label": "ExpenseViewSet",
+        "kind": 6,
+        "importPath": "student.views",
+        "description": "student.views",
+        "peekOfCode": "class ExpenseViewSet(viewsets.ModelViewSet):\n    queryset = Expense.objects.all()\n    serializer_class = ExpenseSerializer\n    def create(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        expense = serializer.save()\n        total_members = expense.split_among.count()\n        if total_members > 0:\n            split_amount = expense.amount / total_members",
+        "detail": "student.views",
+        "documentation": {}
+    },
+    {
+        "label": "UserExpensesView",
+        "kind": 6,
+        "importPath": "student.views",
+        "description": "student.views",
+        "peekOfCode": "class UserExpensesView(APIView):\n    permission_classes = [IsAuthenticated]\n    def get(self, request):\n        # Get all the group IDs the user is part of\n        user_groups_ids = request.user.groups.values_list('id', flat=True)\n        # Debugging: Print out the group IDs to see what groups the user is part of\n        print(f\"User groups: {user_groups_ids}\")\n        if not user_groups_ids:\n            return Response({\"message\": \"User is not part of any groups.\"}, status=status.HTTP_404_NOT_FOUND)\n        # Get expenses for the user's groups",
+        "detail": "student.views",
         "documentation": {}
     },
     {

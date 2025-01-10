@@ -1,10 +1,65 @@
 
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from .serializers import RegistrationSerializer, LoginSerializer
+from student.serializers import RegistrationSerializer, LoginSerializer, GroupSerializer, ExpenseSerializer, ExpenseWithShareSerializer
+from student.models import Group, Expense
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from django.utils import timezone
+from rest_framework.permissions import IsAuthenticated
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+
+class ExpenseViewSet(viewsets.ModelViewSet):
+    queryset = Expense.objects.all()
+    serializer_class = ExpenseSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        expense = serializer.save()
+
+        total_members = expense.split_among.count()
+        if total_members > 0:
+            split_amount = expense.amount / total_members
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+# ---------------------------------------------------------------------------
+
+
+class UserExpensesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        # Get all the group IDs the user is part of
+        user_groups_ids = request.user.groups.values_list('id', flat=True)
+
+        # Debugging: Print out the group IDs to see what groups the user is part of
+        print(f"User groups: {user_groups_ids}")
+
+        if not user_groups_ids:
+            return Response({"message": "User is not part of any groups."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Get expenses for the user's groups
+        expenses = Expense.objects.filter(group__id__in=user_groups_ids)
+
+        # Debugging: Print out the number of expenses returned
+        print(f"Number of expenses found: {expenses.count()}")
+
+        # Serialize the expenses with user share
+        serializer = ExpenseWithShareSerializer(
+            expenses, many=True, context={'request': request})
+
+        # Return the serialized data
+        return Response(serializer.data)
+
+
+# ---------------------------------------------------------------------------
 
 
 class RegistrationViewSet(viewsets.ViewSet):
