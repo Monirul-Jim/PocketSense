@@ -634,7 +634,7 @@
         "kind": 6,
         "importPath": "student.serializers",
         "description": "student.serializers",
-        "peekOfCode": "class ExpenseSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name',  # This makes it accept and return the group name\n        queryset=Group.objects.all()\n    )\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username',  # You can use 'email' instead of 'username'\n        queryset=User.objects.all()\n    )\n    split_among = serializers.SlugRelatedField(",
+        "peekOfCode": "class ExpenseSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name',  # Accept group name for the field\n        queryset=Group.objects.all()\n    )\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username',  # Accept username for the user\n        queryset=User.objects.all()\n    )\n    split_among = serializers.SlugRelatedField(",
         "detail": "student.serializers",
         "documentation": {}
     },
@@ -643,7 +643,7 @@
         "kind": 6,
         "importPath": "student.serializers",
         "description": "student.serializers",
-        "peekOfCode": "class ExpenseWithShareSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name', queryset=Group.objects.all())\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username', queryset=User.objects.all())\n    split_among = serializers.SlugRelatedField(\n        slug_field='username', queryset=User.objects.all(), many=True)\n    user_share = serializers.SerializerMethodField()\n    class Meta:\n        model = Expense",
+        "peekOfCode": "class ExpenseWithShareSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name', queryset=Group.objects.all())\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username', queryset=User.objects.all())\n    split_among = serializers.SlugRelatedField(\n        slug_field='username', queryset=User.objects.all(), many=True)\n    user_share = serializers.SerializerMethodField()\n    paid_to_or_by = serializers.SerializerMethodField()\n    amount_to_receive_or_pay = serializers.SerializerMethodField()",
         "detail": "student.serializers",
         "documentation": {}
     },
@@ -706,7 +706,7 @@
         "kind": 6,
         "importPath": "student.views",
         "description": "student.views",
-        "peekOfCode": "class UserExpensesView(APIView):\n    permission_classes = [IsAuthenticated]\n    def get(self, request):\n        # Get all the group IDs the user is part of\n        user_groups_ids = request.user.groups.values_list('id', flat=True)\n        # Debugging: Print out the group IDs to see what groups the user is part of\n        print(f\"User groups: {user_groups_ids}\")\n        if not user_groups_ids:\n            return Response({\"message\": \"User is not part of any groups.\"}, status=status.HTTP_404_NOT_FOUND)\n        # Get expenses for the user's groups",
+        "peekOfCode": "class UserExpensesView(APIView):\n    permission_classes = [IsAuthenticated]\n    def get(self, request):\n        # Get all the group IDs the user is part of, based on custom_groups\n        user_groups_ids = request.user.custom_groups.values_list(\n            'id', flat=True)\n        # Debugging: Print out the group IDs to see what groups the user is part of\n        print(f\"User groups: {user_groups_ids}\")\n        if not user_groups_ids:\n            return Response({\"message\": \"User is not part of any groups.\"}, status=status.HTTP_404_NOT_FOUND)",
         "detail": "student.views",
         "documentation": {}
     },

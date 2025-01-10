@@ -19,16 +19,16 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class ExpenseSerializer(serializers.ModelSerializer):
     group = serializers.SlugRelatedField(
-        slug_field='name',  # This makes it accept and return the group name
+        slug_field='name',  # Accept group name for the field
         queryset=Group.objects.all()
     )
     paid_by = serializers.SlugRelatedField(
-        slug_field='username',  # You can use 'email' instead of 'username'
+        slug_field='username',  # Accept username for the user
         queryset=User.objects.all()
     )
     split_among = serializers.SlugRelatedField(
         many=True,
-        slug_field='username',  # You can use 'email' instead of 'username'
+        slug_field='username',  # Accept usernames for the split
         queryset=User.objects.all()
     )
 
@@ -38,9 +38,28 @@ class ExpenseSerializer(serializers.ModelSerializer):
                   'paid_by', 'split_among', 'created_at']
 
     def validate(self, data):
+        # Check if the amount is greater than 0
         if data['amount'] <= 0:
             raise serializers.ValidationError(
                 {'amount': 'Amount must be greater than zero.'})
+
+        # Ensure the user creating the expense is part of the group
+        group = data['group']
+        user = data['paid_by']
+
+        if user not in group.members.all():
+            raise serializers.ValidationError(
+                {'paid_by': f'{user} is not a member of the selected group.'}
+            )
+
+        # Ensure that all users in the split_among field are members of the group
+        for user_in_split in data['split_among']:
+            if user_in_split not in group.members.all():
+                raise serializers.ValidationError(
+                    {'split_among': f'{
+                        user_in_split.username} is not a member of the selected group.'}
+                )
+
         return data
 # --------------------------------------------------------------------------
 
@@ -53,21 +72,59 @@ class ExpenseWithShareSerializer(serializers.ModelSerializer):
     split_among = serializers.SlugRelatedField(
         slug_field='username', queryset=User.objects.all(), many=True)
     user_share = serializers.SerializerMethodField()
+    paid_to_or_by = serializers.SerializerMethodField()
+    amount_to_receive_or_pay = serializers.SerializerMethodField()
 
     class Meta:
         model = Expense
         fields = ['id', 'group', 'description', 'amount',
-                  'paid_by', 'split_among', 'user_share']
+                  'paid_by', 'split_among', 'user_share', 'paid_to_or_by', 'amount_to_receive_or_pay']
 
     def get_user_share(self, obj):
         # Get the user making the request
         user = self.context['request'].user
 
         # Calculate the share of the user if they are in the split_among list
-        if user in obj.split_among.all():
-            total_members = len(obj.split_among.all())
-            return round(obj.amount / total_members, 2)
+        total_members = len(obj.split_among.all()) + \
+            1  # Including the one who paid
+        share_amount = round(obj.amount / total_members, 2)
+
+        # If the user is in the split_among list or is the one who paid
+        if user in obj.split_among.all() or user == obj.paid_by:
+            return share_amount
         return 0  # If the user is not part of the split, their share is 0
+
+    def get_paid_to_or_by(self, obj):
+        # Get the user making the request
+        user = self.context['request'].user
+
+        # If the user paid, return "Paid By" message
+        if user == obj.paid_by:
+            return "Paid By"
+
+        # If the user is in the split_among list, return "Paid To" message
+        if user in obj.split_among.all():
+            return f"Paid To {obj.paid_by.username}"
+
+        return None  # If the user is neither paying nor splitting, return None
+
+    def get_amount_to_receive_or_pay(self, obj):
+        user = self.context['request'].user
+        total_members = len(obj.split_among.all()) + \
+            1  # Including the one who paid
+        share_amount = round(obj.amount / total_members, 2)
+
+        # If the user is the one who paid, they will receive from others
+        if user == obj.paid_by:
+            amount_to_receive = (total_members - 1) * share_amount
+            return round(amount_to_receive, 2)
+
+        # If the user is in the split_among list, they owe their share to the user who paid
+        if user in obj.split_among.all():
+            return round(share_amount, 2)
+
+        return 0  # If the user is not part of the split, they don't owe anything
+
 # ------------------------------------------------------------------------------
 
 

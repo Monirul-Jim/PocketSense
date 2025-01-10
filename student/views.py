@@ -36,8 +36,9 @@ class UserExpensesView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        # Get all the group IDs the user is part of
-        user_groups_ids = request.user.groups.values_list('id', flat=True)
+        # Get all the group IDs the user is part of, based on custom_groups
+        user_groups_ids = request.user.custom_groups.values_list(
+            'id', flat=True)
 
         # Debugging: Print out the group IDs to see what groups the user is part of
         print(f"User groups: {user_groups_ids}")
@@ -57,7 +58,6 @@ class UserExpensesView(APIView):
 
         # Return the serialized data
         return Response(serializer.data)
-
 
 # ---------------------------------------------------------------------------
 
