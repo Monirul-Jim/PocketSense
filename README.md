@@ -185,18 +185,19 @@ http://127.0.0.1:8000/api/
 **Response:**
 
 ```json
-{
-  "user": "john",
-  "expenses": [
-    {
-      "group": "Tour To Sylhet",
-      "description": "Breakfast",
-      "amount": 500,
-      "paid_by": "mohosin",
-      "share": 500
-    }
-  ]
-}
+[
+  {
+    "id": 4,
+    "group": "Tour To Sylhet",
+    "description": "Breakfast",
+    "amount": "1000.00",
+    "paid_by": "mohosin",
+    "split_among": ["john"],
+    "user_share": 500.0,
+    "paid_to_or_by": "Paid By",
+    "amount_to_receive_or_pay": 500.0
+  }
+]
 ```
 
 ---
