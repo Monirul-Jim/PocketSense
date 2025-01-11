@@ -7,7 +7,6 @@ router = routers.DefaultRouter()
 router.register('register', RegistrationViewSet, basename='register')
 router.register('groups', GroupViewSet, basename='group')
 router.register('expenses', ExpenseViewSet, basename='expense')
-# router.register('user-expenses/', UserExpensesView, basename='user-expenses')
 urlpatterns = [
     path('', include(router.urls)),
     path('login/', LoginView.as_view(), name='login'),

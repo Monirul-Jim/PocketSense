@@ -634,7 +634,7 @@
         "kind": 6,
         "importPath": "student.serializers",
         "description": "student.serializers",
-        "peekOfCode": "class ExpenseSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name',  # Accept group name for the field\n        queryset=Group.objects.all()\n    )\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username',  # Accept username for the user\n        queryset=User.objects.all()\n    )\n    split_among = serializers.SlugRelatedField(",
+        "peekOfCode": "class ExpenseSerializer(serializers.ModelSerializer):\n    group = serializers.SlugRelatedField(\n        slug_field='name',\n        queryset=Group.objects.all()\n    )\n    paid_by = serializers.SlugRelatedField(\n        slug_field='username',\n        queryset=User.objects.all()\n    )\n    split_among = serializers.SlugRelatedField(",
         "detail": "student.serializers",
         "documentation": {}
     },
@@ -652,7 +652,7 @@
         "kind": 6,
         "importPath": "student.serializers",
         "description": "student.serializers",
-        "peekOfCode": "class RegistrationSerializer(serializers.ModelSerializer):\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True)\n    password1 = serializers.CharField(write_only=True)\n    class Meta:\n        model = User\n        fields = ['username', 'first_name', 'last_name',\n                  'email', 'password', 'password1']\n    def validate(self, data):\n        # Check if the passwords match",
+        "peekOfCode": "class RegistrationSerializer(serializers.ModelSerializer):\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True)\n    password1 = serializers.CharField(write_only=True)\n    class Meta:\n        model = User\n        fields = ['username', 'first_name', 'last_name',\n                  'email', 'password', 'password1']\n    def validate(self, data):\n        if data['password'] != data['password1']:",
         "detail": "student.serializers",
         "documentation": {}
     },
@@ -670,7 +670,7 @@
         "kind": 5,
         "importPath": "student.urls",
         "description": "student.urls",
-        "peekOfCode": "router = routers.DefaultRouter()\nrouter.register('register', RegistrationViewSet, basename='register')\nrouter.register('groups', GroupViewSet, basename='group')\nrouter.register('expenses', ExpenseViewSet, basename='expense')\n# router.register('user-expenses/', UserExpensesView, basename='user-expenses')\nurlpatterns = [\n    path('', include(router.urls)),\n    path('login/', LoginView.as_view(), name='login'),\n    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n    path('user-expenses/', UserExpensesView.as_view(), name='user_expenses'),",
+        "peekOfCode": "router = routers.DefaultRouter()\nrouter.register('register', RegistrationViewSet, basename='register')\nrouter.register('groups', GroupViewSet, basename='group')\nrouter.register('expenses', ExpenseViewSet, basename='expense')\nurlpatterns = [\n    path('', include(router.urls)),\n    path('login/', LoginView.as_view(), name='login'),\n    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n    path('user-expenses/', UserExpensesView.as_view(), name='user_expenses'),\n]",
         "detail": "student.urls",
         "documentation": {}
     },
@@ -706,7 +706,7 @@
         "kind": 6,
         "importPath": "student.views",
         "description": "student.views",
-        "peekOfCode": "class UserExpensesView(APIView):\n    permission_classes = [IsAuthenticated]\n    def get(self, request):\n        # Get all the group IDs the user is part of, based on custom_groups\n        user_groups_ids = request.user.custom_groups.values_list(\n            'id', flat=True)\n        # Debugging: Print out the group IDs to see what groups the user is part of\n        print(f\"User groups: {user_groups_ids}\")\n        if not user_groups_ids:\n            return Response({\"message\": \"User is not part of any groups.\"}, status=status.HTTP_404_NOT_FOUND)",
+        "peekOfCode": "class UserExpensesView(APIView):\n    permission_classes = [IsAuthenticated]\n    def get(self, request):\n        user_groups_ids = request.user.custom_groups.values_list(\n            'id', flat=True)\n        print(f\"User groups: {user_groups_ids}\")\n        if not user_groups_ids:\n            return Response({\"message\": \"User is not part of any groups.\"}, status=status.HTTP_404_NOT_FOUND)\n        expenses = Expense.objects.filter(group__id__in=user_groups_ids)\n        print(f\"Number of expenses found: {expenses.count()}\")",
         "detail": "student.views",
         "documentation": {}
     },

@@ -29,37 +29,27 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# ---------------------------------------------------------------------------
-
 
 class UserExpensesView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        # Get all the group IDs the user is part of, based on custom_groups
         user_groups_ids = request.user.custom_groups.values_list(
             'id', flat=True)
 
-        # Debugging: Print out the group IDs to see what groups the user is part of
         print(f"User groups: {user_groups_ids}")
 
         if not user_groups_ids:
             return Response({"message": "User is not part of any groups."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Get expenses for the user's groups
         expenses = Expense.objects.filter(group__id__in=user_groups_ids)
 
-        # Debugging: Print out the number of expenses returned
         print(f"Number of expenses found: {expenses.count()}")
 
-        # Serialize the expenses with user share
         serializer = ExpenseWithShareSerializer(
             expenses, many=True, context={'request': request})
 
-        # Return the serialized data
         return Response(serializer.data)
-
-# ---------------------------------------------------------------------------
 
 
 class RegistrationViewSet(viewsets.ViewSet):

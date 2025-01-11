@@ -19,16 +19,16 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class ExpenseSerializer(serializers.ModelSerializer):
     group = serializers.SlugRelatedField(
-        slug_field='name',  # Accept group name for the field
+        slug_field='name',
         queryset=Group.objects.all()
     )
     paid_by = serializers.SlugRelatedField(
-        slug_field='username',  # Accept username for the user
+        slug_field='username',
         queryset=User.objects.all()
     )
     split_among = serializers.SlugRelatedField(
         many=True,
-        slug_field='username',  # Accept usernames for the split
+        slug_field='username',
         queryset=User.objects.all()
     )
 
@@ -38,12 +38,10 @@ class ExpenseSerializer(serializers.ModelSerializer):
                   'paid_by', 'split_among', 'created_at']
 
     def validate(self, data):
-        # Check if the amount is greater than 0
         if data['amount'] <= 0:
             raise serializers.ValidationError(
                 {'amount': 'Amount must be greater than zero.'})
 
-        # Ensure the user creating the expense is part of the group
         group = data['group']
         user = data['paid_by']
 
@@ -52,7 +50,6 @@ class ExpenseSerializer(serializers.ModelSerializer):
                 {'paid_by': f'{user} is not a member of the selected group.'}
             )
 
-        # Ensure that all users in the split_among field are members of the group
         for user_in_split in data['split_among']:
             if user_in_split not in group.members.all():
                 raise serializers.ValidationError(
@@ -61,7 +58,6 @@ class ExpenseSerializer(serializers.ModelSerializer):
                 )
 
         return data
-# --------------------------------------------------------------------------
 
 
 class ExpenseWithShareSerializer(serializers.ModelSerializer):
@@ -81,51 +77,42 @@ class ExpenseWithShareSerializer(serializers.ModelSerializer):
                   'paid_by', 'split_among', 'user_share', 'paid_to_or_by', 'amount_to_receive_or_pay']
 
     def get_user_share(self, obj):
-        # Get the user making the request
+
         user = self.context['request'].user
 
-        # Calculate the share of the user if they are in the split_among list
         total_members = len(obj.split_among.all()) + \
-            1  # Including the one who paid
+            1
         share_amount = round(obj.amount / total_members, 2)
 
-        # If the user is in the split_among list or is the one who paid
         if user in obj.split_among.all() or user == obj.paid_by:
             return share_amount
-        return 0  # If the user is not part of the split, their share is 0
+        return 0
 
     def get_paid_to_or_by(self, obj):
-        # Get the user making the request
         user = self.context['request'].user
 
-        # If the user paid, return "Paid By" message
         if user == obj.paid_by:
             return "Paid By"
 
-        # If the user is in the split_among list, return "Paid To" message
         if user in obj.split_among.all():
             return f"Paid To {obj.paid_by.username}"
 
-        return None  # If the user is neither paying nor splitting, return None
+        return None
 
     def get_amount_to_receive_or_pay(self, obj):
         user = self.context['request'].user
         total_members = len(obj.split_among.all()) + \
-            1  # Including the one who paid
+            1
         share_amount = round(obj.amount / total_members, 2)
 
-        # If the user is the one who paid, they will receive from others
         if user == obj.paid_by:
             amount_to_receive = (total_members - 1) * share_amount
             return round(amount_to_receive, 2)
 
-        # If the user is in the split_among list, they owe their share to the user who paid
         if user in obj.split_among.all():
             return round(share_amount, 2)
 
-        return 0  # If the user is not part of the split, they don't owe anything
-
-# ------------------------------------------------------------------------------
+        return 0
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -139,17 +126,14 @@ class RegistrationSerializer(serializers.ModelSerializer):
                   'email', 'password', 'password1']
 
     def validate(self, data):
-        # Check if the passwords match
         if data['password'] != data['password1']:
             raise serializers.ValidationError(
                 {'password1': 'Passwords do not match.'})
 
-        # Check if the username already exists
         if User.objects.filter(username=data['username']).exists():
             raise serializers.ValidationError(
                 {'username': 'Username is already taken.'})
 
-        # Check if the email is already in use
         if User.objects.filter(email=data['email']).exists():
             raise serializers.ValidationError(
                 {'email': 'Email is already registered.'})
@@ -157,7 +141,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        validated_data.pop('password1')  # Remove the confirm password field
+        validated_data.pop('password1')
         user = User.objects.create_user(
             username=validated_data['username'],
             first_name=validated_data['first_name'],

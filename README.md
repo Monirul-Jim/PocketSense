@@ -215,7 +215,3 @@ http://127.0.0.1:8000/api/
 Feel free to contribute by submitting issues or pull requests to improve the API.
 
 ---
-
-## License
-
-This project is licensed under the MIT License.
