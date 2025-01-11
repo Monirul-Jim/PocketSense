@@ -134,7 +134,7 @@ http://127.0.0.1:8000/api/
   "description": "Breakfast",
   "amount": 1000,
   "paid_by": "mohosin",
-  "split_among": ["mohosin", "john"]
+  "split_among": ["john"] //don't need to add whom user paid , he auto added in this field
 }
 ```
 
@@ -149,7 +149,7 @@ http://127.0.0.1:8000/api/
     "description": "Breakfast",
     "amount": 1000,
     "paid_by": "mohosin",
-    "split_among": ["mohosin", "john"]
+    "split_among": ["john"]
   }
 }
 ```
@@ -166,7 +166,7 @@ http://127.0.0.1:8000/api/
     "description": "Breakfast",
     "amount": 1000,
     "paid_by": "mohosin",
-    "split_among": ["mohosin", "john"]
+    "split_among": ["john"]
   }
 ]
 ```
