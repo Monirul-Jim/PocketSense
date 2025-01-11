@@ -165,7 +165,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             password=validated_data['password']
         )
-        return user
 
 
 class LoginSerializer(serializers.Serializer):
